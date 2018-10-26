@@ -10,6 +10,6 @@ git pull
 git config --global user.email "vodorok@gmail.com"
 git config --global user.name "Vodorok"
 
-ln -sv ~/dotfiles/vimrc ~/.vimrc
-ln -sv ~/dotfiles/bash_aliases ~/.bash_aliases
+ln -fsv ~/dotfiles/vimrc ~/.vimrc
+ln -fsv ~/dotfiles/bash_aliases ~/.bash_aliases
 

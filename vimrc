@@ -7,6 +7,8 @@ set softtabstop=0 noexpandtab
 set shiftwidth=4
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+set foldmethod=indent
+set foldlevelstart=20
 
 let g:solarized_termcolors=256
 colorscheme solarized
@@ -62,7 +64,19 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"global variables for plugins
+let g:ycm_autoclose_preview_after_insertion=1
+
+"commands for plugins
+nnoremap <C-c>fi :YcmCompleter Fixit<CR>
+" Nerdtree
+" keyboard shortcut
+map <C-n> :NERDTreeToggle<CR>
+" close panel on file open
+let g:NERDTreeQuitOnOpen = 1
+" close vim when only open panel is nerdtree.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 " autocmd to highlight words.
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
-map <C-n> :NERDTreeToggle<CR>
