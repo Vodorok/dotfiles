@@ -12,6 +12,7 @@ git config --global user.name "Vodorok"
 
 ln -fsv ~/dotfiles/vimrc ~/.vimrc
 ln -fsv ~/dotfiles/bash_aliases ~/.bash_aliases
+ln -fsv ~/dotfiles/bashrc ~/.bashrc
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
