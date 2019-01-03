@@ -17,6 +17,7 @@ ln -fsv ~/dotfiles/bashrc ~/.bashrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/bundle/nerdtree-git-plugin
+git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
 git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
 cp -Rv ~/.vim/bundle/vim-colors-solarized/colors ~/.vim
 git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline

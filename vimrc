@@ -27,6 +27,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
@@ -67,7 +68,10 @@ filetype plugin indent on    " required
 "global variables for plugins
 let g:ycm_autoclose_preview_after_insertion=1
 
-"commands for plugins
+" vim fugitive git diff splitting setting
+set diffopt+=vertical
+
+" commands for plugins
 nnoremap <C-c>fi :YcmCompleter Fixit<CR>
 " Nerdtree
 " keyboard shortcut
