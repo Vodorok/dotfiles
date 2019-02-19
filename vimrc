@@ -7,6 +7,11 @@ set softtabstop=0 noexpandtab
 set shiftwidth=4
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+" Spellchecking is mandatory
+set spell spelllang=en_us
+
+set mouse=a
+
 set foldmethod=indent
 set foldlevelstart=20
 
@@ -26,11 +31,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
+Plugin 'MarSoft/nerdtree-grep-plugin'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'solarnz/thrift.vim'
+Plugin 'chrisbra/Recover.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -65,6 +73,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+
 "global variables for plugins
 let g:ycm_autoclose_preview_after_insertion=1
 
@@ -95,3 +106,5 @@ if &diff
         endif
     endfunction
 endif
+
+noremap % v%
