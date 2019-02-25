@@ -3,16 +3,33 @@
 # install git first if not from git?
 apt install git
 
-#update dotfiles repo
-git pull
+apt install python3.6
 
 # set git username
 git config --global user.email "vodorok@gmail.com"
 git config --global user.name "Vodorok"
 
+#install master vim
+
+sudo apt remove vim vim-runtime gvim
+
+git clone https://github.com/vim/vim.git ./vim
+cd vim
+./configure --with-features=huge \
+    --enable-multibyte \
+    --enable-python3interp=yes \
+    --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu \
+    --enable-gui=gtk2 \
+    --enable-cscope \
+    --prefix=/usr/local
+
+make vimruntimedir=/usr/local/share/vim/vim81
+sudo make install
+
 ln -fsv ~/dotfiles/vimrc ~/.vimrc
 ln -fsv ~/dotfiles/bash_aliases ~/.bash_aliases
 ln -fsv ~/dotfiles/bashrc ~/.bashrc
+ln -fsv ~/dotfiles/gitconfig ~/.gitconfig
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
