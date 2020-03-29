@@ -1,0 +1,8 @@
+[alias]
+	lola = log --pretty=oneline --all --graph --decorate --abbrev-commit
+        parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
+[user]
+	email = gabor.kutas@ericsson.com
+	name = Vodorok
+[core]
+	editor = vim

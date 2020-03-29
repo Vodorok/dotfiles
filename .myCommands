@@ -1,0 +1,13 @@
+#!bin/bash/
+
+#appends to path
+function expath {
+  case ":$PATH:" in
+    *":$1:"*) :;; # already there
+    *) PATH="$1:$PATH";; # or PATH="$PATH:$2"
+  esac
+}
+
+function searchin() {
+    find . -iname *$1 | xargs grep -win --color $2
+}
