@@ -56,6 +56,7 @@ call plug#end()
 " Airline
 """"""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
 
 "global variables for plugins
 "let g:ycm_autoclose_preview_after_insertion=1
