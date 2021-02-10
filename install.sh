@@ -1,9 +1,13 @@
 #!/bin/bash
 
 # install git first if not from git?
-apt install git
-apt install python3.6
-apt install bat
+sudo apt update
+sudo apt install libncurses5-dev libncursesw5-dev
+sudo apt install build-essential
+sudo apt install git
+sudo apt install python3.8
+sudo apt install bat
+
 
 # set git username
 git config --global user.email "vodorok@gmail.com"
@@ -26,6 +30,9 @@ cd vim
 make vimruntimedir=/usr/local/share/vim/vim81
 sudo make install
 
+git clone https://github.com/morhetz/gruvbox.git ~/tmp
+cp -r ~/tmp/colors ~/.vim/ && rm -rf ~/tmp
+
 ln -fsv ~/dotfiles/vimrc ~/.vimrc
 ln -fsv ~/dotfiles/bash_aliases ~/.bash_aliases
 ln -fsv ~/dotfiles/bashrc ~/.bashrc
@@ -46,3 +53,6 @@ ln -fsv ~/dotfiles/bash_functions ~/.bash_functions
 # git submodule update --init --recursive
 # cd ~
 # python3  ~/.vim/bundle/YouCompleteMe/install.py --java-completer
+
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+nvm install 14.15.5
