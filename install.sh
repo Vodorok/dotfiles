@@ -2,12 +2,27 @@
 
 # install git first if not from git?
 sudo apt update
-sudo apt install libncurses5-dev libncursesw5-dev
-sudo apt install build-essential
-sudo apt install git
-sudo apt install python3.8
-sudo apt install bat
+sudo apt install -y libncurses5-dev \
+    libncursesw5-dev \
+    build-essential \
+    git \
+    install python3.9 \
+    unzip
 
+mkdir -p ~/bin
+
+# install bat
+# not workgin atm
+#sudo apt install bat
+wget https://github.com/sharkdp/bat/releases/download/v0.18.0/bat_0.18.0_amd64.deb
+sudo dpkg -i bat_0.18.0_amd64.deb
+rm bat_0.18.0_amd64.de
+
+# install exa
+wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
+unzip exa-linux-x86_64-0.9.0.zip -d ~/bin
+rm exa-linux-x86_64-0.9.0.zip
+ln -fs ~/bin/exa-linux-x86_64 ~/bin/exa
 
 # set git username
 git config --global user.email "vodorok@gmail.com"
