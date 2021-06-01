@@ -7,7 +7,8 @@ sudo apt install -y libncurses5-dev \
     build-essential \
     git \
     install python3.9 \
-    unzip
+    unzip \
+    tree
 
 mkdir -p ~/bin
 
@@ -52,7 +53,9 @@ ln -fsv ~/dotfiles/vimrc ~/.vimrc
 ln -fsv ~/dotfiles/bash_aliases ~/.bash_aliases
 ln -fsv ~/dotfiles/bashrc ~/.bashrc
 ln -fsv ~/dotfiles/gitconfig ~/.gitconfig
+ln -fsv ~/dotfiles/inputrc ~/.inputrc
 ln -fsv ~/dotfiles/bash_functions ~/.bash_functions
+# ln -fsv ~/dotfiles/profile ~/.profile Reintroduce after cleaning up profile
 
 # git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree

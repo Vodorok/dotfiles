@@ -5,6 +5,8 @@ set number
 
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+autocmd FileType vue setlocal shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
 " Spellchecking is mandatory
 set spell spelllang=en_us
 
