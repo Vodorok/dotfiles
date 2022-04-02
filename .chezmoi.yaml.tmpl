@@ -1,0 +1,6 @@
+{{- $gh_email := promptString "Github email" -}}
+{{- $gh_user := promptString "Github user" -}}
+
+[data]
+    gh_email = {{ $gh_email | quote }}
+    gh_user = {{ $gh_user | quote }}
