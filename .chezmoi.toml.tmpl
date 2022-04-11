@@ -1,5 +1,6 @@
 {{- $gh_email := promptString "Github email" -}}
 {{- $gh_user := promptString "Github user" -}}
+{{- $sys_apps_needed := promptBool "Instal system apps" -}}
 
 [data]
     gh_email = {{ $gh_email | quote }}

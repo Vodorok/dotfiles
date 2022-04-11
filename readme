@@ -1,0 +1,13 @@
+# Dotfiles repo for vodorok
+
+## Install
+
+Run the following script for automatic bootstrapping
+`sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply vodorok`
+
+# Testing
+
+There is a dockerfile included for easy testing (and for throwaway workspace) run:
+`cd docker_test && docker build -t ubuntu_test . && cd -`
+then run:
+`docker run -it --rm -v $PWD:/home/vodorok/chezmoi ubuntu_test`
