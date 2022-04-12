@@ -1,4 +1,5 @@
-{{- if .sys_apps_needed -}}
+#!/usr/bin/env bash
+#{{- if .sys_apps_needed -}}
 
 sudo apt-get update && apt-get install \
 	python3.9 \
@@ -7,3 +8,4 @@ sudo apt-get update && apt-get install \
 
 # Node Version Manager
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
