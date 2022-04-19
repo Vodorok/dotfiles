@@ -1,0 +1,3 @@
+Make the docker image running the following:
+
+`docker build -t ubuntu_test .`

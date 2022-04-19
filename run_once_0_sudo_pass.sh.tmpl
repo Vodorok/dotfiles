@@ -1,0 +1,9 @@
+{{- if eq .install_method 1 -}}
+#!/usr/bin/env bash
+
+sudo touch /etc/sudoers.d/pass_once
+echo "Defaults !tty_tickets" | sudo tee -a /etc/sudoers.d/pass_once
+
+#sudo service sudo restart
+
+{{ end }}

@@ -1,0 +1,48 @@
+{{- if ne .install_method 3 -}}
+#!/usr/bin/env bash
+
+DEBIAN_FRONTEND=noninteractive
+TZ=Europe/Budapest
+sudo ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime
+sudo echo "$TZ" > /etc/timezone
+
+sudo apt update && sudo apt install -y curl \
+	wget \
+        unzip \
+	python3.9 \
+	byobu \
+
+
+#########
+# ripgrep
+#########
+wget 'https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb' &&
+sudo apt install ./ripgrep_13.0.0_amd64.deb
+rm -f ./ripgrep_13.0.0_amd64.deb
+
+
+########
+# neovim
+########
+# Neovim is archaic on ubuntu package registry
+# install a newer one from GH.
+
+wget 'https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb' &&
+sudo apt install ./nvim-linux64.deb
+rm -f ./nvim-linux64.deb
+sudo ln -fsv /usr/bin/nvim /usr/bin/vim
+
+# Install vim.plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# Install all the vim plugins
+vim -c ':PlugInstall | :qa!'
+
+
+#####
+# exa
+#####
+~/.local/share/chezmoi/install/exa.sh 1
+
+{{ end }}

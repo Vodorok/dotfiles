@@ -1,0 +1,22 @@
+{{- if ne .install_method 3 -}}
+#!/usr/bin/env bash
+
+#these apps modify the shell config files, therefore come after zsh install
+
+#####
+# fzf
+#####
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+
+######################
+# Node Version Manager
+######################
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm install --lts
+
+{{ end }}

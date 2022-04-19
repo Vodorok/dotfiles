@@ -1,0 +1,17 @@
+{{- if eq .install_method 1 -}}
+#!/usr/bin/env bash
+
+sudo rm -f /etc/sudoers.d/pass_once
+
+
+echo "======================================="
+{{- if eq .install_zsh "true" -}}
+echo " run: exec zsh to reload the new shell "
+{{ end }}
+{{- if ne .install_zsh "true" -}}
+echo " run: exec $SHELL to reload the new variables"
+{{ end }}
+echo "======================================="
+
+
+{{ end }}

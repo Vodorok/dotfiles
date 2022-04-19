@@ -1,0 +1,15 @@
+{{- if eq .install_zsh "true" -}}
+#!/usr/bin/env bash
+
+sudo apt update && sudo apt -y install zsh
+
+# The install will override the default zshrc so we'll do it manulally
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+chsh -s $(which zsh)
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# sed -i "s/robbyrussell/powerlevel10k\/powerlevel10k/g" $HOME/.zshrc
+
+{{ end }}
