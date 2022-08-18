@@ -1,7 +1,10 @@
 {{- $gh_email := promptString "Github email" -}}
 {{- $gh_user := promptString "Github user" -}}
-{{- $sys_apps_needed := promptBool "Instal system apps" -}}
+{{- $install_method := promptInt "Install method (1) system; (2) local (rootless); (3) no install" 3 -}}
+{{- $install_zsh := promptBool "Install zsh" -}}
 
 [data]
     gh_email = {{ $gh_email | quote }}
     gh_user = {{ $gh_user | quote }}
+    install_method = {{ $install_method }}
+    install_zsh = {{ $install_zsh | quote }}

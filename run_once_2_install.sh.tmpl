@@ -10,8 +10,10 @@ sudo apt update && sudo apt install -y curl \
 	wget \
         unzip \
 	python3.9 \
+	python3-pip \
 	byobu \
 
+pip3 install pynvim
 
 #########
 # ripgrep
@@ -44,5 +46,16 @@ vim -c ':PlugInstall | :qa!'
 # exa
 #####
 ~/.local/share/chezmoi/install/exa.sh 1
+
+#####
+# bat
+#####
+~/.local/share/chezmoi/install/bat.sh 1
+
+########
+# direnv
+########
+~/.local/share/chezmoi/install/direnv.sh 1
+
 
 {{ end }}

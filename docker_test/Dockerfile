@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install sudo wget curl locales
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install sudo wget curl locales unzip
 RUN sh -c "$(curl -fsLS chezmoi.io/get)"
 
 

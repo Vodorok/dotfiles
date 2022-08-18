@@ -10,4 +10,25 @@ Run the following script for automatic bootstrapping
 There is a dockerfile included for easy testing (and for throwaway workspace) run:
 `cd docker_test && docker build -t ubuntu_test . && cd -`
 then run:
-`docker run -it --rm -v $PWD:/home/vodorok/chezmoi ubuntu_test`
+`docker run -it --rm -v $PWD:/home/vodorok/.local/share/chezmoi ubuntu_test`
+
+
+TODO:
+
+set up proper man folders for the manually installed tools
+set up proper autocomplete folders for both bash and zsh
+set up the remaining applications for local install mode.
+
+Already done:
+bat
+exa
+direnv
+
+To be done:
+zsh
+ripgrep
+neovim
+fzf
+...
+
+

@@ -1,14 +1,139 @@
 
+" Next buffer shortcuts
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bp :bp<cr>
+nnoremap <leader>bd :bd<cr>  
+let mapleader = ";"
+
+:set number 
+:set relativenumber
 
 call plug#begin()
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'Yggdroot/indentLine'
+Plug 'puremourning/vimspector'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'ellisonleao/gruvbox.nvim'
 " Initialize plugin system
 call plug#end()
 
+set background=dark " or light if you want light mode
+colorscheme gruvbox
 
+""""""""""""
+" vimspector
+""""""""""""
+
+nmap <Leader>c <Plug>VimspectorContinue
+nmap <Leader>ds <Plug>VimspectorStop
+nmap <Leader>dr <Plug>VimspectorRestart
+nmap <Leader>dR <Plug>VimspectorReset
+nmap <Leader>dp <Plug>VimspectorPause
+nmap <Leader>db <Plug>VimspectorBreakpoints
+nmap <Leader>b <Plug>VimspectorToggleBreakpoint
+nmap <Leader>bc <Plug>VimspectorToggleConditionalBreakpoint
+nmap <Leader>bf <Plug>VimspectorAddFunctionBreakpoint
+nmap <Leader>rc <Plug>VimspectorGoToCurrentLine
+nmap <Leader>rC <Plug>VimspectorRunToCursor
+nmap <Leader>s <Plug>VimspectorStepOver
+nmap <Leader>i <Plug>VimspectorStepInto
+nmap <Leader>o <Plug>VimspectorStepOut
+nmap <Leader>duf <Plug>VimspectorUpFrame
+nmap <Leader>ddf <Plug>VimspectorDownFrame
+
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+""""""""""""
+" treesitter
+""""""""""""
+
+lua << END
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "lua", "python", "java", "javascript", "tsx", "vue" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+
+  indent = {
+    enable = true
+  },
+}
+END
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=20
+
+""""""""""
+" lua-line
+""""""""""
+lua << END
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+END
+"
+"""""
+" COC
+"""""
+let g:coc_global_extensions = ['coc-explorer','coc-pyright']
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -175,3 +300,9 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+""""""""""""""
+" coc-explorer
+""""""""""""""
+
+:nmap <space>e <Cmd>CocCommand explorer<CR>
