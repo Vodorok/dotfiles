@@ -1,9 +1,8 @@
-
 " Next buffer shortcuts
-nnoremap <leader>bn :bn<cr>
-nnoremap <leader>bp :bp<cr>
-nnoremap <leader>bd :bd<cr>  
 let mapleader = ";"
+nnoremap <leader>n :bn<cr>
+nnoremap <leader>p :bp<cr>
+nnoremap <leader>bd :bd<cr>  
 
 :set number 
 :set relativenumber
@@ -17,13 +16,39 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'Yggdroot/indentLine'
 Plug 'puremourning/vimspector'
 Plug 'airblade/vim-gitgutter'
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'preservim/tagbar',
+Plug 'luochen1990/rainbow',
 
 Plug 'ellisonleao/gruvbox.nvim'
+Plug 'catppuccin/nvim'
 " Initialize plugin system
 call plug#end()
 
-set background=dark " or light if you want light mode
-colorscheme gruvbox
+" set background=dark " or light if you want light mode
+" colorscheme gruvbox
+
+let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
+
+lua << EOF
+require("catppuccin").setup()
+EOF
+
+colorscheme catppuccin
+set termguicolors
+
+""""""""""""
+" Rainbow
+""""""""""""
+let g:rainbow_active = 1
+
+""""""""""""
+" Bufferline
+""""""""""""
+lua << EOF
+require("bufferline").setup{}
+EOF
 
 """"""""""""
 " vimspector
@@ -129,7 +154,17 @@ require('lualine').setup {
   extensions = {}
 }
 END
-"
+
+""""""""
+" Tagbar
+""""""""
+
+nmap <leader>ol :TagbarToggle<CR>
+
+
+
+
+
 """""
 " COC
 """""
@@ -164,19 +199,16 @@ else
   set signcolumn=yes
 endif
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
+function! CheckBackSpace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction                                                                                                                                                          
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackSpace() ? "\<Tab>" :
+      \ coc#refresh()                                                                                                
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -185,10 +217,10 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" To make <CR> to confirm selection of selected complete item or notify coc.nvim
+" to format on enter, use: >
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
+        			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -238,7 +270,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>cfc  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
