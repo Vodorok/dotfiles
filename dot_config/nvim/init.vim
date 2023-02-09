@@ -7,6 +7,11 @@ nnoremap <leader>bd :bd<cr>
 :set number 
 :set relativenumber
 
+:set tabstop=2
+:set shiftwidth=2
+:set expandtab
+:set softtabstop=2
+
 call plug#begin()
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -18,8 +23,10 @@ Plug 'puremourning/vimspector'
 Plug 'airblade/vim-gitgutter'
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-Plug 'preservim/tagbar',
-Plug 'luochen1990/rainbow',
+Plug 'preservim/tagbar'
+Plug 'luochen1990/rainbow'
+Plug 'github/copilot.vim'
+Plug 'APZelos/blamer.nvim'
 
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'catppuccin/nvim'
@@ -37,6 +44,11 @@ EOF
 
 colorscheme catppuccin
 set termguicolors
+
+""""""""""""
+" Blamer
+""""""""""""
+let g:blamer_enabled = 1
 
 """"""""""""
 " Rainbow
